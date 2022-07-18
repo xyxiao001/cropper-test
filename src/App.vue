@@ -1,6 +1,7 @@
 <template>
   <section class="cropper">
     <VueCropper
+      v-if="show"
       ref="cropper" 
       auto-crop
       mode="cover"
@@ -8,6 +9,7 @@
     >
     </VueCropper>
     <button @click="getData">获取截图</button>
+    <button @click="() => show = !show">{{show ? '隐藏' : '展示'}}</button>
   </section>
 </template>
 
@@ -17,6 +19,8 @@ import { VueCropper }  from "vue-cropper";
 import { ref } from '@vue/runtime-core';
 
 const cropper = ref(null)
+
+const show = ref(true)
 
 const getData = () => {
   cropper.value.getCropData(data => {
